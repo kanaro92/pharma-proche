@@ -17,7 +17,8 @@ public class UserRequestDTO {
     private String medicament;
     private String latitude;
     private String longitude;
+    private String userId;
+    private String userEmail;
     private LocalDateTime createdAt;
-    private UserDTO user;
 
 }

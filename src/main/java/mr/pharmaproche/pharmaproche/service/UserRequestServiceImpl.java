@@ -47,6 +47,6 @@ public class UserRequestServiceImpl implements UserRequestService{
 
     @KafkaListener(topics = AppConstant.USER_REQUEST_TOPIC, groupId = "user-request-group")
     public void listenUserRequestTopic(UserRequestDTO userRequest) {
-        log.info("Received message: {}", userRequest);
+        log.info("New user request: {}", userRequest);
     }
 }

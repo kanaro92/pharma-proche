@@ -20,7 +20,8 @@ public class UserRequestMapper {
                 .medicament(userRequest.getMedicament())
                 .latitude(userRequest.getLatitude())
                 .longitude(userRequest.getLongitude())
-                .user(userMapper.userToDTO(userRequest.getUser()))
+                .userId(userRequest.getUserId())
+                .userEmail(userRequest.getUserEmail())
                 .createdAt(userRequest.getCreatedAt())
                 .build();
     }
@@ -34,7 +35,8 @@ public class UserRequestMapper {
                 .medicament(userRequestDTO.getMedicament())
                 .latitude(userRequestDTO.getLatitude())
                 .longitude(userRequestDTO.getLongitude())
-                .user(userMapper.dtoToUser(userRequestDTO.getUser()))
+                .userId(userRequestDTO.getUserId())
+                .userEmail(userRequestDTO.getUserEmail())
                 .createdAt(userRequestDTO.getCreatedAt())
                 .build();
     }

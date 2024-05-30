@@ -1,6 +1,5 @@
 package mr.pharmaproche.pharmaproche.controller;
 
-import mr.pharmaproche.pharmaproche.collection.User;
 import mr.pharmaproche.pharmaproche.collection.UserRequest;
 import mr.pharmaproche.pharmaproche.service.UserRequestService;
 import org.springframework.web.bind.annotation.*;

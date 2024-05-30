@@ -21,8 +21,8 @@ public class UserRequest {
     private String medicament;
     private String latitude;
     private String longitude;
+    private String userId;
+    private String userEmail;
     private LocalDateTime createdAt;
-    @DocumentReference
-    private User user;
 
 }
