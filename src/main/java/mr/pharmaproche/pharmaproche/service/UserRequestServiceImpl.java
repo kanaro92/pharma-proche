@@ -5,6 +5,7 @@ import mr.pharmaproche.pharmaproche.collection.UserRequest;
 import mr.pharmaproche.pharmaproche.collection.dto.UserRequestDTO;
 import mr.pharmaproche.pharmaproche.constant.AppConstant;
 import mr.pharmaproche.pharmaproche.mapper.UserRequestMapper;
+import mr.pharmaproche.pharmaproche.publisher.UserRequestPublisher;
 import mr.pharmaproche.pharmaproche.repository.UserRequestRepository;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -17,14 +18,13 @@ import java.util.List;
 public class UserRequestServiceImpl implements UserRequestService{
 
     private final UserRequestRepository repository;
-    private final KafkaTemplate<String, Object> kafkaTemplate;
-
     private final UserRequestMapper userRequestMapper;
+    private final UserRequestPublisher userRequestPublisher;
 
-    public UserRequestServiceImpl(UserRequestRepository repository, KafkaTemplate<String, Object> kafkaTemplate, UserRequestMapper userRequestMapper) {
+    public UserRequestServiceImpl(UserRequestRepository repository, UserRequestMapper userRequestMapper, UserRequestPublisher userRequestPublisher) {
         this.repository = repository;
-        this.kafkaTemplate = kafkaTemplate;
         this.userRequestMapper = userRequestMapper;
+        this.userRequestPublisher = userRequestPublisher;
     }
 
 
@@ -32,21 +32,12 @@ public class UserRequestServiceImpl implements UserRequestService{
     public String searchMedicament(UserRequest userRequest) {
         String requestId =  repository.save(userRequest).getId();
         UserRequestDTO dto =  userRequestMapper.userRequestToDTO(repository.findById(requestId).get());
-        publishEvent(dto);
+        userRequestPublisher.publish(dto);
         return requestId;
     }
 
     @Override
     public List<UserRequest> getUserRequestByUserId(String userId) {
         return repository.findUserRequestByUserId(userId);
-    }
-
-    private void publishEvent(UserRequestDTO userRequest) {
-        kafkaTemplate.send(AppConstant.USER_REQUEST_TOPIC, userRequest);
-    }
-
-    @KafkaListener(topics = AppConstant.USER_REQUEST_TOPIC, groupId = "user-request-group")
-    public void listenUserRequestTopic(UserRequestDTO userRequest) {
-        log.info("New user request: {}", userRequest);
     }
 }
