@@ -16,6 +16,8 @@ import java.util.List;
 @RequestMapping("api/v1/pharma-proche/user")
 public class UserController {
 
+    //todo implement reactive prog with reactor
+
     private final UserService userService;
 
     public UserController(UserService userService) {

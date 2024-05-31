@@ -17,6 +17,6 @@ public class UserRequestPublisher implements EventPublisher<UserRequestDTO> {
     @Override
     public void publish(UserRequestDTO request) {
         kafkaTemplate.send(AppConstant.USER_REQUEST_TOPIC, request);
-        log.info("*********** User request Published: {} ***********", request);
+        log.info("*********** User request Published: {} ", request);
     }
 }

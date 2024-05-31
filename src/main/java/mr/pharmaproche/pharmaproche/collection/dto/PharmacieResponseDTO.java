@@ -17,7 +17,7 @@ public class PharmacieResponseDTO {
     private Double price;
     private Boolean availability;
     private LocalDateTime createdAt;
-    private UserRequestDTO userRequest;
-    private PharmacieDTO pharmacie;
+    private String userRequestId;
+    private String pharmacieId;
 
 }

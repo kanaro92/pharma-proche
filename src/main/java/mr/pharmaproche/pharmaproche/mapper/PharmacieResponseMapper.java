@@ -22,8 +22,8 @@ public class PharmacieResponseMapper {
                 .price(response.getPrice())
                 .availability(response.getAvailability())
                 .createdAt(response.getCreatedAt())
-                .pharmacie(pharmacieMapper.pharmacieToDTO(response.getPharmacie()))
-                .userRequest(requestMapper.userRequestToDTO(response.getUserRequest()))
+                .userRequestId(response.getUserRequestId())
+                .pharmacieId(response.getPharmacieId())
                 .build();
     }
 
@@ -36,8 +36,8 @@ public class PharmacieResponseMapper {
                 .price(responseDTO.getPrice())
                 .availability(responseDTO.getAvailability())
                 .createdAt(responseDTO.getCreatedAt())
-                .pharmacie(pharmacieMapper.dtoPharmacie(responseDTO.getPharmacie()))
-                .userRequest(requestMapper.dtoToUserRequest(responseDTO.getUserRequest()))
+                .userRequestId(responseDTO.getUserRequestId())
+                .pharmacieId(responseDTO.getPharmacieId())
                 .build();
     }
 }

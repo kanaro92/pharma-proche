@@ -13,6 +13,6 @@ public class PharmacieResponseListener {
 
     @KafkaListener(topics = AppConstant.PHARMACIE_RESPONSE_TOPIC, groupId = "user-request-group")
     public void listenPharmacieResponse(ConsumerRecord<String, PharmacieResponseDTO> record) {
-        log.info("*********** New pharmacie response: {} ***********", record.value());
+        log.info("*********** New pharmacie response: {} ", record.value());
     }
 }

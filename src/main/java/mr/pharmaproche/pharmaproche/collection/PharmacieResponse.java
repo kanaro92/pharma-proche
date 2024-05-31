@@ -1,10 +1,12 @@
 package mr.pharmaproche.pharmaproche.collection;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.time.LocalDateTime;
 
@@ -21,9 +23,7 @@ public class PharmacieResponse {
     private Double price;
     private Boolean availability;
     private LocalDateTime createdAt;
-    @DocumentReference
-    private UserRequest userRequest;
-    @DocumentReference
-    private Pharmacie pharmacie;
+    private String userRequestId;
+    private String pharmacieId;
 
 }
