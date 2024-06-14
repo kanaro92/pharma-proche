@@ -1,9 +1,7 @@
 package mr.pharmaproche.pharmaproche.controller;
 
-import mr.pharmaproche.pharmaproche.collection.Pharmacie;
-import mr.pharmaproche.pharmaproche.collection.User;
+import mr.pharmaproche.pharmaproche.model.Pharmacie;
 import mr.pharmaproche.pharmaproche.service.PharmacieService;
-import mr.pharmaproche.pharmaproche.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -39,12 +37,12 @@ public class PharmacieController {
     }
 
     @PostMapping
-    public String save(@RequestBody Pharmacie pharmacie) {
+    public Long save(@RequestBody Pharmacie pharmacie) {
         return pharmacieService.save(pharmacie);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable String id) {
+    public void delete(@PathVariable Long id) {
         pharmacieService.delete(id);
     }
 }

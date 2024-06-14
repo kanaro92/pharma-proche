@@ -1,6 +1,6 @@
 package mr.pharmaproche.pharmaproche.controller;
 
-import mr.pharmaproche.pharmaproche.collection.UserRequest;
+import mr.pharmaproche.pharmaproche.model.UserRequest;
 import mr.pharmaproche.pharmaproche.service.UserRequestService;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,12 +18,12 @@ public class UserRequestController {
 
 
     @GetMapping("/getUserRequestByUserId/{userId}")
-    public List<UserRequest> getUserRequestByUserId(@PathVariable String userId) {
+    public List<UserRequest> getUserRequestByUserId(@PathVariable Long userId) {
         return userRequestService.getUserRequestByUserId(userId);
     }
 
     @PostMapping("/search-medicament")
-    public String searchMedicament(@RequestBody UserRequest userRequest) {
+    public Long searchMedicament(@RequestBody UserRequest userRequest) {
         return userRequestService.searchMedicament(userRequest);
     }
 

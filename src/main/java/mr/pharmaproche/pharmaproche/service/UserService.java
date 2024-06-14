@@ -1,23 +1,20 @@
 package mr.pharmaproche.pharmaproche.service;
 
-import mr.pharmaproche.pharmaproche.collection.User;
-import mr.pharmaproche.pharmaproche.collection.dto.UserDTO;
+import mr.pharmaproche.pharmaproche.model.AppUser;
+import mr.pharmaproche.pharmaproche.model.dto.UserDTO;
 import mr.pharmaproche.pharmaproche.registration.RegistrationRequest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
-public interface UserService {
-    List<User> getUsers();
+public interface UserService extends UserDetailsService {
+    List<AppUser> getUsers();
 
-    String save(UserDTO user);
+    Long save(UserDTO user);
 
     List<UserDTO> getUserStartWith(String firstName);
 
-    void delete(String id);
-
-    Page<User> search(String firstName, String lastName, String email, Pageable pageable);
+    void delete(Long id);
 
     String registerUser(RegistrationRequest registrationRequest);
 }

@@ -1,7 +1,7 @@
 package mr.pharmaproche.pharmaproche.mapper;
 
-import mr.pharmaproche.pharmaproche.collection.UserRequest;
-import mr.pharmaproche.pharmaproche.collection.dto.UserRequestDTO;
+import mr.pharmaproche.pharmaproche.model.UserRequest;
+import mr.pharmaproche.pharmaproche.model.dto.UserRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,8 +20,7 @@ public class UserRequestMapper {
                 .medicament(userRequest.getMedicament())
                 .latitude(userRequest.getLatitude())
                 .longitude(userRequest.getLongitude())
-                .userId(userRequest.getUserId())
-                .userEmail(userRequest.getUserEmail())
+                .user(userMapper.userToDTO(userRequest.getUser()))
                 .createdAt(userRequest.getCreatedAt())
                 .build();
     }
@@ -35,8 +34,7 @@ public class UserRequestMapper {
                 .medicament(userRequestDTO.getMedicament())
                 .latitude(userRequestDTO.getLatitude())
                 .longitude(userRequestDTO.getLongitude())
-                .userId(userRequestDTO.getUserId())
-                .userEmail(userRequestDTO.getUserEmail())
+                .user(userMapper.dtoToUser(userRequestDTO.getUser()))
                 .createdAt(userRequestDTO.getCreatedAt())
                 .build();
     }

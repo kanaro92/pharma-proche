@@ -1,7 +1,7 @@
 package mr.pharmaproche.pharmaproche.publisher;
 
 import lombok.extern.slf4j.Slf4j;
-import mr.pharmaproche.pharmaproche.collection.dto.UserRequestDTO;
+import mr.pharmaproche.pharmaproche.model.dto.UserRequestDTO;
 import mr.pharmaproche.pharmaproche.constant.AppConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;

@@ -1,6 +1,6 @@
 package mr.pharmaproche.pharmaproche.controller;
 
-import mr.pharmaproche.pharmaproche.collection.PharmacieResponse;
+import mr.pharmaproche.pharmaproche.model.PharmacieResponse;
 import mr.pharmaproche.pharmaproche.service.PharmacieResponseService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,12 +17,12 @@ public class PharmacieResponseController {
     }
 
     @GetMapping("/getPharmacieResponseByUserRequestId/{userRequestId}")
-    public List<PharmacieResponse> getPharmacieResponseByUserRequestId(@PathVariable String userRequestId) {
+    public List<PharmacieResponse> getPharmacieResponseByUserRequestId(@PathVariable Long userRequestId) {
         return pharmacieResponseService.getPharmacieResponseByUserRequestId(userRequestId);
     }
 
     @PostMapping
-    public String save(@RequestBody PharmacieResponse pharmacieResponse) {
+    public Long save(@RequestBody PharmacieResponse pharmacieResponse) {
         return pharmacieResponseService.save(pharmacieResponse);
     }
 

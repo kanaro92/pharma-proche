@@ -1,13 +1,13 @@
 package mr.pharmaproche.pharmaproche.service;
 
 import lombok.extern.slf4j.Slf4j;
-import mr.pharmaproche.pharmaproche.collection.PharmacieResponse;
-import mr.pharmaproche.pharmaproche.collection.dto.PharmacieResponseDTO;
+import mr.pharmaproche.pharmaproche.model.PharmacieResponse;
+import mr.pharmaproche.pharmaproche.model.dto.PharmacieResponseDTO;
 import mr.pharmaproche.pharmaproche.constant.AppConstant;
 import mr.pharmaproche.pharmaproche.mapper.PharmacieResponseMapper;
+import mr.pharmaproche.pharmaproche.publisher.PharmacieResponsePublisher;
 import mr.pharmaproche.pharmaproche.repository.PharmacieResponseRepository;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,13 +17,13 @@ import java.util.List;
 public class PharmacieResponseServiceImpl implements PharmacieResponseService {
 
     private final PharmacieResponseRepository repository;
-    private final KafkaTemplate<String, Object> kafkaTemplate;
     private final PharmacieResponseMapper mapper;
+    private final PharmacieResponsePublisher responsePublisher;
 
-    public PharmacieResponseServiceImpl(PharmacieResponseRepository repository, KafkaTemplate<String, Object> kafkaTemplate, PharmacieResponseMapper mapper) {
+    public PharmacieResponseServiceImpl(PharmacieResponseRepository repository, PharmacieResponseMapper mapper, PharmacieResponsePublisher responsePublisher) {
         this.repository = repository;
-        this.kafkaTemplate = kafkaTemplate;
         this.mapper = mapper;
+        this.responsePublisher = responsePublisher;
     }
 
     @Override
@@ -32,24 +32,20 @@ public class PharmacieResponseServiceImpl implements PharmacieResponseService {
     }
 
     @Override
-    public String save(PharmacieResponse pharmacieResponse) {
-        String responseId = repository.save(pharmacieResponse).getId();
+    public Long save(PharmacieResponse pharmacieResponse) {
+        Long responseId = repository.save(pharmacieResponse).getId();
         PharmacieResponseDTO responseDTO = mapper.pharmacieResponseToDTO(repository.findById(responseId).get());
-        publishEvent(responseDTO);
+        responsePublisher.publish(responseDTO);
         return responseId;
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(Long id) {
     }
 
     @Override
-    public List<PharmacieResponse> getPharmacieResponseByUserRequestId(String userRequestId) {
+    public List<PharmacieResponse> getPharmacieResponseByUserRequestId(Long userRequestId) {
         return repository.findPharmacieResponseByUserRequestId(userRequestId);
-    }
-
-    private void publishEvent(PharmacieResponseDTO response) {
-        kafkaTemplate.send(AppConstant.PHARMACIE_RESPONSE_TOPIC, response);
     }
 
     @KafkaListener(topics = AppConstant.PHARMACIE_RESPONSE_TOPIC, groupId = "user-request-group")

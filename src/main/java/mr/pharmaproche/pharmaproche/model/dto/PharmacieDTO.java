@@ -1,4 +1,4 @@
-package mr.pharmaproche.pharmaproche.collection.dto;
+package mr.pharmaproche.pharmaproche.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MedicamentDTO {
+public class PharmacieDTO {
 
-    private String id;
+    private Long id;
     private String name;
-    private String description;
-    private String category;
-    private Double price;
+    private String phone;
+    private String email;
+    private AddressDTO address;
 
 }

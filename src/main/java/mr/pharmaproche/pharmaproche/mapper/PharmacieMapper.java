@@ -1,7 +1,7 @@
 package mr.pharmaproche.pharmaproche.mapper;
 
-import mr.pharmaproche.pharmaproche.collection.Pharmacie;
-import mr.pharmaproche.pharmaproche.collection.dto.PharmacieDTO;
+import mr.pharmaproche.pharmaproche.model.Pharmacie;
+import mr.pharmaproche.pharmaproche.model.dto.PharmacieDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

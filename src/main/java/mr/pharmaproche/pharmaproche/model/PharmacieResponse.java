@@ -1,11 +1,10 @@
-package mr.pharmaproche.pharmaproche.registration.token;
+package mr.pharmaproche.pharmaproche.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import mr.pharmaproche.pharmaproche.model.AppUser;
 
 import java.time.LocalDateTime;
 
@@ -14,15 +13,16 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class ConfirmationToken {
+public class PharmacieResponse {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String token;
+    private Double price;
+    private Boolean availability;
     private LocalDateTime createdAt;
-    private LocalDateTime expiresAt;
-    private LocalDateTime confirmedAt;
+    @ManyToOne
+    private Pharmacie pharmacie;
     @OneToOne
-    private AppUser user;
+    private UserRequest userRequest;
 }

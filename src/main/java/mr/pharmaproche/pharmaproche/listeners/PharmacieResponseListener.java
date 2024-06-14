@@ -1,7 +1,7 @@
 package mr.pharmaproche.pharmaproche.listeners;
 
 import lombok.extern.slf4j.Slf4j;
-import mr.pharmaproche.pharmaproche.collection.dto.PharmacieResponseDTO;
+import mr.pharmaproche.pharmaproche.model.dto.PharmacieResponseDTO;
 import mr.pharmaproche.pharmaproche.constant.AppConstant;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;

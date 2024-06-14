@@ -1,13 +1,10 @@
 package mr.pharmaproche.pharmaproche.repository;
 
-import mr.pharmaproche.pharmaproche.collection.Pharmacie;
-import mr.pharmaproche.pharmaproche.collection.User;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import mr.pharmaproche.pharmaproche.model.Pharmacie;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface PharmacieRepository extends MongoRepository<Pharmacie, String> {
+public interface PharmacieRepository extends JpaRepository<Pharmacie, Long> {
 
 }

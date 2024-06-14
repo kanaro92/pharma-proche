@@ -1,4 +1,4 @@
-package mr.pharmaproche.pharmaproche.collection.dto;
+package mr.pharmaproche.pharmaproche.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,13 +11,13 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PharmacieResponseDTO {
+public class UserRequestDTO {
 
-    private String id;
-    private Double price;
-    private Boolean availability;
+    private Long id;
+    private String medicament;
+    private String latitude;
+    private String longitude;
     private LocalDateTime createdAt;
-    private String userRequestId;
-    private String pharmacieId;
+    private UserDTO user;
 
 }

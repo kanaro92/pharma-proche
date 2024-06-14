@@ -1,7 +1,9 @@
-package mr.pharmaproche.pharmaproche.collection.dto;
+package mr.pharmaproche.pharmaproche.model.dto;
 
 import lombok.*;
-import mr.pharmaproche.pharmaproche.collection.enums.UserRole;
+import mr.pharmaproche.pharmaproche.model.Role;
+
+import java.util.List;
 
 @Data
 @Builder
@@ -11,13 +13,12 @@ import mr.pharmaproche.pharmaproche.collection.enums.UserRole;
 @AllArgsConstructor
 public class UserDTO {
 
-    private String id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String phone;
     private String email;
-    private UserRole role;
+    private Role role;
     private AddressDTO address;
-    private String token;
-
+    private List<UserRequestDTO> userRequests;
 }

@@ -1,15 +1,15 @@
 package mr.pharmaproche.pharmaproche.service;
 
-import mr.pharmaproche.pharmaproche.collection.PharmacieResponse;
+import mr.pharmaproche.pharmaproche.model.PharmacieResponse;
 
 import java.util.List;
 
 public interface PharmacieResponseService {
     List<PharmacieResponse> getPharmacieResponses();
 
-    String save(PharmacieResponse pharmacieResponse);
+    Long save(PharmacieResponse pharmacieResponse);
 
-    void delete(String id);
+    void delete(Long id);
 
-    List<PharmacieResponse> getPharmacieResponseByUserRequestId(String userRequestId);
+    List<PharmacieResponse> getPharmacieResponseByUserRequestId(Long userRequestId);
 }

@@ -1,7 +1,7 @@
 package mr.pharmaproche.pharmaproche.mapper;
 
-import mr.pharmaproche.pharmaproche.collection.PharmacieResponse;
-import mr.pharmaproche.pharmaproche.collection.dto.PharmacieResponseDTO;
+import mr.pharmaproche.pharmaproche.model.PharmacieResponse;
+import mr.pharmaproche.pharmaproche.model.dto.PharmacieResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,8 +22,8 @@ public class PharmacieResponseMapper {
                 .price(response.getPrice())
                 .availability(response.getAvailability())
                 .createdAt(response.getCreatedAt())
-                .userRequestId(response.getUserRequestId())
-                .pharmacieId(response.getPharmacieId())
+                .userRequest(requestMapper.userRequestToDTO(response.getUserRequest()))
+                .pharmacie(pharmacieMapper.pharmacieToDTO(response.getPharmacie()))
                 .build();
     }
 
@@ -36,8 +36,8 @@ public class PharmacieResponseMapper {
                 .price(responseDTO.getPrice())
                 .availability(responseDTO.getAvailability())
                 .createdAt(responseDTO.getCreatedAt())
-                .userRequestId(responseDTO.getUserRequestId())
-                .pharmacieId(responseDTO.getPharmacieId())
+                .userRequest(requestMapper.dtoToUserRequest(responseDTO.getUserRequest()))
+                .pharmacie(pharmacieMapper.dtoPharmacie(responseDTO.getPharmacie()))
                 .build();
     }
 }

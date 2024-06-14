@@ -1,12 +1,12 @@
 package mr.pharmaproche.pharmaproche.service;
 
-import mr.pharmaproche.pharmaproche.collection.UserRequest;
+import mr.pharmaproche.pharmaproche.model.UserRequest;
 
 import java.util.List;
 
 public interface UserRequestService {
 
-    String searchMedicament(UserRequest userRequest);
+    Long searchMedicament(UserRequest userRequest);
 
-    List<UserRequest> getUserRequestByUserId(String userId);
+    List<UserRequest> getUserRequestByUserId(Long userId);
 }

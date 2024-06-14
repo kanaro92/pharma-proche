@@ -1,4 +1,4 @@
-package mr.pharmaproche.pharmaproche.collection.enums;
+package mr.pharmaproche.pharmaproche.model.enums;
 
 public enum UserRole {
     ADMIN,

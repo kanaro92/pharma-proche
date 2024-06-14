@@ -1,4 +1,4 @@
-package mr.pharmaproche.pharmaproche.collection.dto;
+package mr.pharmaproche.pharmaproche.model.dto;
 
 import lombok.*;
 
@@ -8,6 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 public class AddressDTO {
 
+    private Long id;
     private String city;
     private String country;
     private String postalCode;

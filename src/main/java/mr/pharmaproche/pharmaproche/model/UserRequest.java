@@ -1,5 +1,6 @@
-package mr.pharmaproche.pharmaproche.collection.dto;
+package mr.pharmaproche.pharmaproche.model;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,14 +12,17 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRequestDTO {
+@Entity
+public class UserRequest {
 
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String medicament;
     private String latitude;
     private String longitude;
-    private String userId;
-    private String userEmail;
     private LocalDateTime createdAt;
+    @ManyToOne
+    private AppUser user;
 
 }

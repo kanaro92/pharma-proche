@@ -1,9 +1,7 @@
 package mr.pharmaproche.pharmaproche.service;
 
-import mr.pharmaproche.pharmaproche.collection.Photo;
+import mr.pharmaproche.pharmaproche.model.Photo;
 import mr.pharmaproche.pharmaproche.repository.PhotoRepository;
-import org.bson.BsonBinarySubType;
-import org.bson.types.Binary;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,16 +17,12 @@ public class PhotoServiceImpl implements PhotoService {
     }
 
     @Override
-    public String addPhoto(String originalFilename, MultipartFile image) throws IOException {
-        Photo photo = Photo.builder()
-                .title(originalFilename)
-                .photo(new Binary(BsonBinarySubType.BINARY, image.getBytes()))
-                .build();
-        return photoRepository.save(photo).getId();
+    public Long addPhoto(String originalFilename, MultipartFile image) throws IOException {
+        return null;
     }
 
     @Override
-    public Photo getPhoto(String id) {
+    public Photo getPhoto(Long id) {
         return photoRepository.findById(id).get();
     }
 }

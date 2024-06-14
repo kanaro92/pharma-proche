@@ -1,13 +1,11 @@
 package mr.pharmaproche.pharmaproche.controller;
 
-import mr.pharmaproche.pharmaproche.collection.Pharmacie;
-import mr.pharmaproche.pharmaproche.collection.User;
-import mr.pharmaproche.pharmaproche.collection.dto.UserDTO;
+import mr.pharmaproche.pharmaproche.model.AppUser;
+import mr.pharmaproche.pharmaproche.model.dto.UserDTO;
 import mr.pharmaproche.pharmaproche.registration.RegistrationRequest;
-import mr.pharmaproche.pharmaproche.service.UserService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import mr.pharmaproche.pharmaproche.service.UserServiceImpl;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,26 +16,15 @@ public class UserController {
 
     //todo implement reactive prog with reactor
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
-    public UserController(UserService userService) {
+    public UserController(UserServiceImpl userService) {
         this.userService = userService;
     }
 
-    @GetMapping("/search")
-    public Page<User> search(
-            @RequestParam(required = false) String firstName,
-            @RequestParam(required = false) String lastName,
-            @RequestParam(required = false) String email,
-            @RequestParam(defaultValue = "0") Integer page,
-            @RequestParam(defaultValue = "5") Integer size
-    ) {
-        Pageable pageable = PageRequest.of(page, size);
-        return userService.search(firstName, lastName, email, pageable);
-    }
-
+    @PreAuthorize("hasAnyAuthority('GGG')")
     @GetMapping("/getUsers")
-    public List<User> getUsers() {
+    public List<AppUser> getUsers() {
         return userService.getUsers();
     }
 
@@ -47,7 +34,7 @@ public class UserController {
     }
 
     @PostMapping("/saveUser")
-    public String save(@RequestBody UserDTO user) {
+    public Long save(@RequestBody UserDTO user) {
         return userService.save(user);
     }
 
@@ -57,7 +44,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable String id) {
+    public void delete(@PathVariable Long id) {
         userService.delete(id);
     }
 }

@@ -1,7 +1,7 @@
 package mr.pharmaproche.pharmaproche.mapper;
 
-import mr.pharmaproche.pharmaproche.collection.Address;
-import mr.pharmaproche.pharmaproche.collection.dto.AddressDTO;
+import mr.pharmaproche.pharmaproche.model.Address;
+import mr.pharmaproche.pharmaproche.model.dto.AddressDTO;
 import org.springframework.stereotype.Component;
 
 @Component

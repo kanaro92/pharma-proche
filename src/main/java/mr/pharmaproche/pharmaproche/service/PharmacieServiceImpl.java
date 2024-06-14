@@ -1,6 +1,6 @@
 package mr.pharmaproche.pharmaproche.service;
 
-import mr.pharmaproche.pharmaproche.collection.Pharmacie;
+import mr.pharmaproche.pharmaproche.model.Pharmacie;
 import mr.pharmaproche.pharmaproche.repository.PharmacieRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,7 +23,7 @@ public class PharmacieServiceImpl implements PharmacieService{
     }
 
     @Override
-    public String save(Pharmacie pharmacie) {
+    public Long save(Pharmacie pharmacie) {
         return pharmacieRepository.save(pharmacie).getId();
     }
 
@@ -33,7 +33,7 @@ public class PharmacieServiceImpl implements PharmacieService{
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(Long id) {
         pharmacieRepository.deleteById(id);
     }
 }
